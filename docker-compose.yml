@@ -1,0 +1,30 @@
+version: "3.2"
+services:
+  minecraft:
+    image: dowerx/minecraft:${MINECRAFT_VER}-${FABRIC_VER}-${FABRIC_INSTALLER_VER}
+    build:
+      context: build
+      dockerfile: Dockerfile
+      args:
+        - MINECRAFT_VER=${MINECRAFT_VER}
+        - FABRIC_VER=${FABRIC_VER}
+        - FABRIC_INSTALLER_VER=${FABRIC_INSTALLER_VER}
+        - EULA=${EULA}
+      tags:
+        - "dowerx/minecraft:${MINECRAFT_VER}-${FABRIC_VER}-${FABRIC_INSTALLER_VER}"
+        - "dowerx/minecraft:${MINECRAFT_VER}"
+        - "dowerx/minecraft:latest"
+    ports:
+      - ${MINECRAFT_PORT}:25565
+      - ${RCON_PORT}:25575
+    volumes:
+      - ./config/banned-ips.json:/minecraft/banned-ips.json
+      - ./config/banned-players.json:/minecraft/banned-players.json
+      - ./config/ops.json:/minecraft/ops.json
+      - ./config/server.properties:/minecraft/server.properties
+      - ./config/usercache.json:/minecraft/usercache.json
+      - ./config/whitelist.json:/minecraft/whitelist.json
+      
+      - ./logs:/minecraft/logs
+      - ./mods:/minecraft/mods
+      - ./world:/minecraft/world
