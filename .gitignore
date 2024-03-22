@@ -2,3 +2,4 @@ mods/*
 logs/*
 config/*
 world/*
+build/__pycache__
