@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre-jammy as build
+FROM eclipse-temurin:21-jre-jammy as build
 
 ARG MINECRAFT_VER=1.20.4
 ARG FABRIC_VER=0.15.7
@@ -9,7 +9,7 @@ RUN mkdir /minecraft && \
 WORKDIR /minecraft
 RUN java -jar ./server.jar
 
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:21-jre-jammy
 
 ARG EULA=false
 
